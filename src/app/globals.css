@@ -1,0 +1,253 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Instrument-sans";
+  src: url("../common//fonts/instrument-sans-ttf/InstrumentSans-Regular.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Instrument-sans";
+  src: url("../common//fonts/instrument-sans-ttf/InstrumentSans-Medium.ttf")
+    format("truetype");
+  font-weight: medium;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Darker-grotesque";
+  src: url("../common//fonts/darker-grotesque/DarkerGrotesque-Regular.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Darker-grotesque";
+  src: url("../common//fonts/darker-grotesque/DarkerGrotesque-Medium.ttf")
+    format("truetype");
+  font-weight: medium;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Darker-grotesque";
+  src: url("../common//fonts/darker-grotesque/DarkerGrotesque-SemiBold.ttf")
+    format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Darker-grotesque";
+  src: url("../common//fonts/darker-grotesque/DarkerGrotesque-ExtraBold.ttf")
+    format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Figtree";
+  src: url("../common//fonts/figtree/Figtree-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Figtree";
+  src: url("../common//fonts/figtree/Figtree-Medium.ttf") format("truetype");
+  font-weight: medium;
+  font-style: normal;
+}
+
+:root {
+  /* Tatami brand colors */
+  --primary-dark-teal: #025356;
+  --primary-mint: #d2fce3;
+  --primary-gray: #617268;
+  --primary-light-gray: #ededed;
+
+  --secondary-purple: #e0a9ee;
+  --secondary-orange: #ffbe84;
+
+  /* Default light theme variables only - dark mode disabled */
+  --background: #ffffff;
+  --foreground: #171717;
+
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --primary: #025356;
+  --primary-light: #d2fce3;
+  --text-primary: #617268;
+  --background-light: #ededed;
+
+  /* Arabic font variables */
+  --font-arabic: "Noto Sans Arabic", sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-open-sans);
+}
+
+body {
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  color: rgb(var(--foreground-rgb));
+  font-family: "Open Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Darker Grotesque", sans-serif;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background-color: var(--primary-dark-teal);
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: rgba(2, 83, 86, 0.9); /* 90% opacity */
+}
+
+.btn-secondary {
+  background-color: var(--primary-mint);
+  color: var(--primary-dark-teal);
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(210, 252, 227, 0.8); /* 80% opacity */
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  /* RTL specific styles */
+  html[dir="rtl"] {
+    font-family: var(--font-arabic);
+  }
+
+  /* Support for both LTR and RTL layouts */
+  html[dir="rtl"] .ltr-only {
+    display: none;
+  }
+
+  html[dir="ltr"] .rtl-only {
+    display: none;
+  }
+
+  /* Adjust padding/margins for RTL layout */
+  html[dir="rtl"] .flip-on-rtl {
+    transform: scaleX(-1);
+  }
+
+  /* Tatami brand color utilities */
+  .text-primary {
+    color: var(--primary);
+  }
+
+  .bg-primary {
+    background-color: var(--primary);
+  }
+
+  .text-primary-light {
+    color: var(--primary-light);
+  }
+
+  .bg-primary-light {
+    background-color: var(--primary-light);
+  }
+
+  /* Arabian pattern background utility class */
+  .bg-arabian-pattern {
+    background-image: url("/images/arabian-pattern-light.png");
+    background-repeat: repeat;
+    background-size: 200px;
+    background-blend-mode: overlay;
+    background-opacity: 0.1;
+  }
+}
+
+@layer components {
+  /* Custom Arabian-inspired component styles */
+  .button-arabian {
+    border-radius: 0.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .button-arabian::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      var(--primary-light),
+      var(--secondary-purple),
+      var(--primary-light)
+    );
+    opacity: 0.7;
+  }
+
+  .card-arabian {
+    border-radius: 0.75rem;
+    border-top: 4px solid var(--primary);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Islamic calendar holiday indicator */
+  .islamic-holiday {
+    position: relative;
+  }
+
+  .islamic-holiday::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--secondary-orange);
+  }
+}
+
+@layer utilities {
+  .text-primary {
+    color: var(--primary);
+  }
+
+  .bg-primary {
+    background-color: var(--primary);
+  }
+
+  .border-primary {
+    border-color: var(--primary);
+  }
+
+  .bg-primary-50 {
+    background-color: rgba(2, 83, 86, 0.05);
+  }
+}
